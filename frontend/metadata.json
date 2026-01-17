@@ -1,0 +1,5 @@
+{
+  "name": "Event Lifecycle Management",
+  "description": "An internal enterprise application to manage events, track attendance from Microsoft Teams, and view analytics. It follows a strict event lifecycle and includes role-based access control features.",
+  "requestFramePermissions": []
+}

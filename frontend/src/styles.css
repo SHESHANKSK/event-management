@@ -1,0 +1,200 @@
+/* Modern Enterprise Theme - SG Red/Black Inspiration */
+:root {
+    /* Brand Colors */
+    --brand-primary: #e60028;
+    /* SG Red */
+    --brand-primary-hover: #c40022;
+    --brand-dark: #1e1e1e;
+    /* Softer dark */
+    --brand-sidebar: #121212;
+    /* Deep dark for sidebar */
+
+    /* Text */
+    --text-main: #212529;
+    --text-secondary: #6c757d;
+    --text-on-dark: #ececec;
+
+    /* Surfaces */
+    --surface-bg: #f8f9fa;
+    /* Light grey bg */
+    --surface-card: #ffffff;
+    --border-color: #e9ecef;
+
+    /* Spacing & Radius */
+    --radius-sm: 4px;
+    --radius-md: 8px;
+    --radius-lg: 12px;
+
+    /* Shadows */
+    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.02);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.02);
+}
+
+body {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    background-color: var(--surface-bg);
+    color: var(--text-main);
+    -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-weight: 600;
+    letter-spacing: -0.02em;
+}
+
+/* --- Component Overrides --- */
+
+/* Cards */
+.card {
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+    transition: box-shadow 0.2s ease, transform 0.2s ease;
+    background-color: var(--surface-card);
+}
+
+/* Optional subtle lift for interactive cards, plain for containers */
+.card:hover {
+    transform: translateY(-2px);
+}
+
+
+/* Buttons */
+.btn {
+    border-radius: var(--radius-md);
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+    transition: all 0.2s ease;
+}
+
+.btn-primary {
+    background-color: var(--brand-primary);
+    border-color: var(--brand-primary);
+}
+
+.btn-primary:hover {
+    background-color: var(--brand-primary-hover);
+    border-color: var(--brand-primary-hover);
+}
+
+/* Table Modernization */
+.table {
+    margin-bottom: 0;
+}
+
+.table thead th {
+    background-color: #f8f9fa;
+    color: var(--text-secondary);
+    font-weight: 600;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border-bottom: 2px solid var(--border-color);
+    padding: 1rem 1rem;
+}
+
+.table tbody td {
+    padding: 1rem 1rem;
+    vertical-align: middle;
+    border-bottom: 1px solid var(--border-color);
+    color: var(--text-main);
+    font-size: 0.875rem;
+}
+
+.table-hover tbody tr:hover {
+    background-color: #fafbfc;
+}
+
+/* Form Controls */
+.form-control,
+.form-select {
+    border-radius: var(--radius-md);
+    border: 1px solid #ced4da;
+    padding: 0.6rem 0.8rem;
+    font-size: 0.9rem;
+    box-shadow: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.form-control:focus,
+.form-select:focus {
+    border-color: var(--brand-primary);
+    box-shadow: 0 0 0 3px rgba(230, 0, 40, 0.15);
+    /* SG Red transparent */
+}
+
+.form-label {
+    font-weight: 500;
+    font-size: 0.85rem;
+    color: var(--text-main);
+    margin-bottom: 0.4rem;
+}
+
+/* Badges */
+.badge {
+    font-weight: 500;
+    padding: 0.4em 0.8em;
+    border-radius: 6px;
+    letter-spacing: 0.02em;
+}
+
+.badge.bg-success {
+    background-color: #d1fae5 !important;
+    color: #065f46;
+}
+
+.badge.bg-warning {
+    background-color: #fef3c7 !important;
+    color: #92400e;
+}
+
+.badge.bg-danger {
+    background-color: #fee2e2 !important;
+    color: #b91c1c;
+}
+
+.badge.bg-secondary {
+    background-color: #f3f4f6 !important;
+    color: #4b5563;
+}
+
+.badge.bg-info {
+    background-color: #e0f2fe !important;
+    color: #0369a1;
+}
+
+/* Sidebar Specifics */
+.sidebar-link {
+    border-radius: var(--radius-md);
+    margin-bottom: 4px;
+    padding: 0.75rem 1rem;
+    color: #ced4da !important;
+    transition: all 0.2s;
+    font-weight: 500;
+}
+
+.sidebar-link:hover {
+    background-color: rgba(255, 255, 255, 0.08);
+    color: #fff !important;
+}
+
+.sidebar-link.active {
+    background-color: var(--brand-primary) !important;
+    color: #fff !important;
+    box-shadow: 0 4px 6px rgba(230, 0, 40, 0.3);
+}
+
+/* Utilities */
+.text-brand {
+    color: var(--brand-primary);
+}
+
+.bg-brand {
+    background-color: var(--brand-primary);
+}

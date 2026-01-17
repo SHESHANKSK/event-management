@@ -1,0 +1,91 @@
+<div>
+  <header class="mb-4">
+    <h1 class="display-6 fw-bold text-dark">Analytics Dashboard</h1>
+    <p class="text-muted mt-1">Key metrics and insights from all events.</p>
+  </header>
+
+  <!-- Filter Controls -->
+  <div class="card shadow-sm mb-4">
+    <div class="card-body">
+      <div class="row g-3">
+        <div class="col-12 col-md-6 col-lg-3">
+          <label for="status-filter" class="form-label">Status</label>
+          <select id="status-filter" (change)="onStatusChange($event)" class="form-select">
+            <option value="ALL">All Statuses</option>
+            @for (status of statuses; track status) {
+              <option [value]="status">{{ status }}</option>
+            }
+          </select>
+        </div>
+        <div class="col-12 col-md-6 col-lg-3">
+          <label for="date-from" class="form-label">Date From</label>
+          <input type="date" id="date-from" (change)="onDateFromChange($event)" class="form-control">
+        </div>
+        <div class="col-12 col-md-6 col-lg-3">
+          <label for="date-to" class="form-label">Date To</label>
+          <input type="date" id="date-to" (change)="onDateToChange($event)" class="form-control">
+        </div>
+        <div class="col-12 col-md-6 col-lg-3">
+          <label for="department" class="form-label">Department</label>
+          <input type="text" id="department" (input)="onDepartmentChange($event)" placeholder="e.g., Technology" class="form-control">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  @if (analyticsData(); as data) {
+    <!-- KPI Cards -->
+    <div class="row g-4 mb-4">
+      <div class="col-md-4">
+        <div class="card shadow-sm">
+          <div class="card-body">
+            <h3 class="card-title h6 text-muted">Completed Events</h3>
+            <p class="display-5 fw-semibold text-dark mt-2">{{ data.completedEventsCount }}</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card shadow-sm">
+          <div class="card-body">
+            <h3 class="card-title h6 text-muted">Total Minutes Attended</h3>
+            <p class="display-5 fw-semibold text-dark mt-2">{{ data.totalMinutesAttended.toLocaleString() }}</p>
+          </div>
+        </div>
+      </div>
+       <div class="col-md-4">
+        <div class="card shadow-sm">
+          <div class="card-body">
+            <h3 class="card-title h6 text-muted">Avg. Attendance / Event</h3>
+            <p class="display-5 fw-semibold text-dark mt-2">{{ data.averageAttendancePerEvent }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bar Chart -->
+    <div class="card shadow-sm">
+      <div class="card-body">
+        <h2 class="card-title h5 fw-semibold text-dark">Attendance by Department</h2>
+        <div class="mt-4">
+          @if (data.attendanceByDepartment && data.attendanceByDepartment.length > 0) {
+            <div class="d-flex align-items-end" style="height: 18rem;">
+              @for (item of data.attendanceByDepartment; track item.department) {
+                <div class="flex-grow-1 d-flex flex-column align-items-center mx-2">
+                  <div class="w-100 bg-light rounded-top d-flex align-items-end" style="height: 100%;">
+                    <div class="bg-danger w-100 rounded-top" [style.height]="getBarHeight(item.attendees)"></div>
+                  </div>
+                  <div class="mt-2 small text-muted text-center text-wrap">{{ item.department }}</div>
+                  <div class="small fw-semibold text-dark">{{ item.attendees }}</div>
+                </div>
+              }
+            </div>
+          } @else {
+            <p class="text-center py-5 text-muted">No attendance data available for the selected filters.</p>
+          }
+        </div>
+      </div>
+    </div>
+  } @else {
+    <p class="text-center py-5 text-muted">Loading analytics data...</p>
+  }
+</div>

@@ -1,0 +1,79 @@
+<header class="navbar navbar-expand sticky-top text-white px-4 py-0 shadow-sm"
+  style="height: 64px; background-color: var(--brand-sidebar); border-bottom: 2px solid var(--brand-primary);">
+
+  <!-- Brand -->
+  <div class="d-flex align-items-center me-5">
+    <div class="bg-brand rounded-2 d-flex align-items-center justify-content-center me-3 shadow-sm"
+      style="width: 2.25rem; height: 2.25rem;">
+      <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="white" viewBox="0 0 16 16">
+        <path d="M11 6.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1z" />
+        <path
+          d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z" />
+      </svg>
+    </div>
+    <div class="d-flex flex-column justify-content-center">
+      <span class="h6 fw-bold mb-0 text-white" style="line-height: 1;">EVENT MGMT</span>
+      <span class="small text-secondary" style="font-size: 0.65rem; letter-spacing: 0.05em;">ENTERPRISE</span>
+    </div>
+  </div>
+
+  <!-- Navigation -->
+  <nav class="flex-grow-1 d-none d-md-block h-100">
+    <ul class="nav h-100 align-items-center">
+      @for (link of navLinks(); track link.path) {
+      <li class="nav-item h-100">
+        <a [routerLink]="link.path" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"
+          class="nav-link h-100 d-flex align-items-center px-3 text-secondary position-relative"
+          style="font-weight: 500; font-size: 0.9rem; transition: color 0.2s;">
+          <span class="d-flex align-items-center">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" class="me-2 opacity-75" fill="none"
+              viewBox="0 0 24 24" stroke="currentColor">
+              @if (link.label === 'User Management') {
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2" />
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M9 3a4 4 0 014 4v1a4 4 0 01-8 0V7a4 4 0 014-4z" />
+              } @else {
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" [attr.d]="link.icon" />
+              }
+            </svg>
+            {{ link.label }}
+          </span>
+          <!-- Active Indicator Bottom Border -->
+          <div class="active-indicator position-absolute bottom-0 start-0 w-100 bg-brand"
+            style="height: 3px; display: none;"></div>
+        </a>
+      </li>
+      }
+    </ul>
+  </nav>
+
+  <!-- User Profile -->
+  <div class="d-flex align-items-center ms-auto">
+    <div class="d-flex flex-column align-items-end me-3 d-none d-sm-flex">
+      <span class="small fw-semibold text-white">Admin User</span>
+      <span class="small text-muted" style="font-size: 0.7rem;">Société Générale</span>
+    </div>
+    <div
+      class="rounded-circle bg-secondary d-flex align-items-center justify-content-center text-white fw-bold border border-dark"
+      style="width: 36px; height: 36px; font-size: 0.8rem;">
+      AU
+    </div>
+  </div>
+
+</header>
+
+<style>
+  /* Local component styles for Navbar */
+  .nav-link:hover {
+    color: white !important;
+  }
+
+  .nav-link.active {
+    color: white !important;
+  }
+
+  .nav-link.active .active-indicator {
+    display: block !important;
+  }
+</style>

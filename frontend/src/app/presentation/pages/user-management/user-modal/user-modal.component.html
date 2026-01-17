@@ -1,0 +1,53 @@
+<div class="modal fade" #userModal tabindex="-1" aria-labelledby="userModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content">
+      <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="userModalLabel">{{ isEditMode() ? 'Edit User' : 'Create User' }}</h1>
+          <button type="button" class="btn-close" (click)="close()" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="row g-3">
+            <div class="col-md-6">
+              <label for="firstName" class="form-label">First Name</label>
+              <input type="text" id="firstName" formControlName="firstName" class="form-control" [class.is-invalid]="userForm.controls['firstName'].invalid && userForm.controls['firstName'].touched">
+            </div>
+            <div class="col-md-6">
+              <label for="lastName" class="form-label">Last Name</label>
+              <input type="text" id="lastName" formControlName="lastName" class="form-control" [class.is-invalid]="userForm.controls['lastName'].invalid && userForm.controls['lastName'].touched">
+            </div>
+            <div class="col-12">
+              <label for="email" class="form-label">Email</label>
+              <input type="email" id="email" formControlName="email" class="form-control" [class.is-invalid]="userForm.controls['email'].invalid && userForm.controls['email'].touched">
+            </div>
+            <div class="col-md-6">
+              <label for="department" class="form-label">Department</label>
+              <input type="text" id="department" formControlName="department" class="form-control" [class.is-invalid]="userForm.controls['department'].invalid && userForm.controls['department'].touched">
+            </div>
+            <div class="col-md-6">
+              <label for="location" class="form-label">Location</label>
+              <input type="text" id="location" formControlName="location" class="form-control" [class.is-invalid]="userForm.controls['location'].invalid && userForm.controls['location'].touched">
+            </div>
+            <div class="col-12">
+              <label class="form-label d-block">Roles</label>
+              <div class="d-flex flex-wrap gap-3 mt-1" formArrayName="roles">
+                @for (role of allRoles(); track role; let i = $index) {
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" [formControlName]="i" [id]="'role-' + i">
+                    <label class="form-check-label" [for]="'role-' + i">
+                      {{ role }}
+                    </label>
+                  </div>
+                }
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" (click)="close()">Cancel</button>
+          <button type="submit" class="btn btn-danger" [disabled]="userForm.invalid">{{ isEditMode() ? 'Save Changes' : 'Create User' }}</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
